@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenLink</title>
+  <!-- Link to the Firebase JavaScript SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyCct-foFlQwH0gzHkwyFtZcUeCur7vYxiA",
+      authDomain: "genlink-3cf4a.firebaseapp.com",
+      databaseURL: "https://genlink-3cf4a-default-rtdb.firebaseio.com",
+      projectId: "genlink-3cf4a",
+      storageBucket: "genlink-3cf4a.appspot.com",
+      messagingSenderId: "773385196651",
+      appId: "1:773385196651:web:77ff23da00f92cf55bcd2e",
+      measurementId: "G-EQNJF8HQNS",
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <!-- Your JavaScript code -->
+  <script src="user.js" defer></script>
+  <script src="home.js"></script>
+</head>
+
+<body>  <nav class="navbar navbar-expand-sm mb-1 bg-dark navbar-dark">
+  <div class="container-fluid ">
+    <a class="navbar-brand" href="index.html">
+      <div class="container-fluid navbar-brand">
+        <button class="btn btn-dark btn-block" onclick="document.location = 'index.html'">
+          <img style="width: 2rem;"
+            src="img/GenLink-LogoTransparent.png"
+            alt="Logo" srcset="">
+          <!-- <i class="fas fa-home"></i> -->
+        </button>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mx-3" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="home.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="findpeople.html">Find People</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="chat.html">Chat</a>
+        </li>
+        <li class="nav-item" id="whenSignedOut">
+          <a class="nav-link" id="signInBtn" href="index.html">Login</a>
+        </li>
+        <li id="whenSignedIn" class="nav-item">
+          <a class="nav-link" id="signOutBtn" href="index.html">Sign Out</a>
+        </li>
+        <li id="whenSignedIn" class="nav-item" style="position: fixed; right: 10px;">
+          <a class="nav-link" id="userBtn" href="user.html">
+            <div id="userName"></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- HTML code for your page -->
+  <div id="profile"></div>
+
+  <div class="container-sm">
+    <div class="card my-2">
+      <div class="container-sm">
+        <div class="row">
+          <div class="col-8">
+            <h1 class="  card-title ml-2">My Profile</h1>
+          </div>
+          <div class="col-2 mx-auto"><button class="my-2 btn bg-dark btn-primary" type="button" data-bs-toggle="modal"
+              data-bs-target="#changeProfileModel" id="editButtonForAboutAndIntrest">Edit</button></div>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+          <h5 class="ml-2">Profile Picture:</h5>
+          <div id="profilePic" class="m-3"></div>
+
+        </div>
+        <div class="col-lg-4">
+          <h5 class="ml-2">Name:</h5>
+          <div id="profileName"></div>
+          <h5 class="ml-2">Born:</h5>
+          <div id="profileAge"></div>
+        </div>
+        <div class="col-lg-5">
+          <h5 class="ml-2">About:</h5>
+          <div class="ml-2" id="profileAbout"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <h5 class="ml-2">Email:</h5>
+          <div id="profileMail"></div>
+        </div>
+        <div class="col-lg-6">
+          <h5 class="ml-2">Interest</h5>
+          <div id="profileInterest"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="editInterestsModel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">New Interest</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input type="text" id="newInterest" />
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" id="editInterests" class="btn btn-danger" data-bs-dismiss="modal">
+            Save
+          </button>          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for edit profile -->
+  <div class="modal" id="changeProfileModel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Change Profile</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-row">
+
+
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control mb-2" id="newDisplayName" placeholder="Change Username" />
+          </div>
+          <div class="form-group">
+            <input type="file" id="upload-ProfileIMG-button" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label for="comment">About you:</label>
+            <div id="oldAboutArea"> </div>
+
+          </div>
+          <div class="form-group">
+          </div>
+          <div class="container">
+            <h2>Your Interests</h2>
+            <p>Chech everything that suits you personality</p>
+
+            <div class="containerForIntrests" id="containerForIntrests">
+
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <input type="text" class="form-control" id="customInterest" placeholder="Custom Interest" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <label for="birthday">Birthday</label>
+        <div class="form-row my-2">
+          <div class="col-4 offset-4">
+            <select class="form-control" id="year">
+              <option value="2022" selected="1">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+              <option value="1999">1999</option>
+              <option value="1998">1998</option>
+              <option value="1997">1997</option>
+              <option value="1996">1996</option>
+              <option value="1995">1995</option>
+              <option value="1994">1994</option>
+              <option value="1993">1993</option>
+              <option value="1992">1992</option>
+              <option value="1991">1991</option>
+              <option value="1990">1990</option>
+              <option value="1989">1989</option>
+              <option value="1988">1988</option>
+              <option value="1987">1987</option>
+              <option value="1986">1986</option>
+              <option value="1985">1985</option>
+              <option value="1984">1984</option>
+              <option value="1983">1983</option>
+              <option value="1982">1982</option>
+              <option value="1981">1981</option>
+              <option value="1980">1980</option>
+              <option value="1979">1979</option>
+              <option value="1978">1978</option>
+              <option value="1977">1977</option>
+              <option value="1976">1976</option>
+              <option value="1975">1975</option>
+              <option value="1974">1974</option>
+              <option value="1973">1973</option>
+              <option value="1972">1972</option>
+              <option value="1971">1971</option>
+              <option value="1970">1970</option>
+              <option value="1969">1969</option>
+              <option value="1968">1968</option>
+              <option value="1967">1967</option>
+              <option value="1966">1966</option>
+              <option value="1965">1965</option>
+              <option value="1964">1964</option>
+              <option value="1963">1963</option>
+              <option value="1962">1962</option>
+              <option value="1961">1961</option>
+              <option value="1960">1960</option>
+              <option value="1959">1959</option>
+              <option value="1958">1958</option>
+              <option value="1957">1957</option>
+              <option value="1956">1956</option>
+              <option value="1955">1955</option>
+              <option value="1954">1954</option>
+              <option value="1953">1953</option>
+              <option value="1952">1952</option>
+              <option value="1951">1951</option>
+              <option value="1950">1950</option>
+              <option value="1949">1949</option>
+              <option value="1948">1948</option>
+              <option value="1947">1947</option>
+              <option value="1946">1946</option>
+              <option value="1945">1945</option>
+              <option value="1944">1944</option>
+              <option value="1943">1943</option>
+              <option value="1942">1942</option>
+              <option value="1941">1941</option>
+              <option value="1940">1940</option>
+              <option value="1939">1939</option>
+              <option value="1938">1938</option>
+              <option value="1937">1937</option>
+              <option value="1936">1936</option>
+              <option value="1935">1935</option>
+              <option value="1934">1934</option>
+              <option value="1933">1933</option>
+              <option value="1932">1932</option>
+              <option value="1931">1931</option>
+              <option value="1930">1930</option>
+              <option value="1929">1929</option>
+              <option value="1928">1928</option>
+              <option value="1927">1927</option>
+              <option value="1926">1926</option>
+              <option value="1925">1925</option>
+              <option value="1924">1924</option>
+              <option value="1923">1923</option>
+              <option value="1922">1922</option>
+              <option value="1921">1921</option>
+              <option value="1920">1920</option>
+              <option value="1919">1919</option>
+              <option value="1918">1918</option>
+              <option value="1917">1917</option>
+              <option value="1916">1916</option>
+              <option value="1915">1915</option>
+              <option value="1914">1914</option>
+              <option value="1913">1913</option>
+              <option value="1912">1912</option>
+              <option value="1911">1911</option>
+              <option value="1910">1910</option>
+              <option value="1909">1909</option>
+              <option value="1908">1908</option>
+              <option value="1907">1907</option>
+              <option value="1906">1906</option>
+              <option value="1905">1905</option>
+            </select>
+          </div>
+        </div>
+
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" id="saveChangesInProfile">Save</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+
+</html>

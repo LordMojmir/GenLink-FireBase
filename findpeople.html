@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GenLink</title>
+    <!-- Link to the Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" />
+    <link rel="stylesheet" href="findpeople.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCct-foFlQwH0gzHkwyFtZcUeCur7vYxiA",
+            authDomain: "genlink-3cf4a.firebaseapp.com",
+            databaseURL: "https://genlink-3cf4a-default-rtdb.firebaseio.com",
+            projectId: "genlink-3cf4a",
+            storageBucket: "genlink-3cf4a.appspot.com",
+            messagingSenderId: "773385196651",
+            appId: "1:773385196651:web:77ff23da00f92cf55bcd2e",
+            measurementId: "G-EQNJF8HQNS",
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm mb-1 bg-dark navbar-dark">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="index.html">
+            <div class="container-fluid navbar-brand">
+              <button class="btn btn-dark btn-block" onclick="document.location = 'index.html'">
+                <img style="width: 2rem;"
+                  src="img/GenLink-LogoTransparent.png"
+                  alt="Logo" srcset="">
+                <!-- <i class="fas fa-home"></i> -->
+              </button>
+            </div>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse mx-3" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="findpeople.html">Find People</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="chat.html">Chat</a>
+              </li>
+              <li class="nav-item" id="whenSignedOut">
+                <a class="nav-link" id="signInBtn" href="index.html">Login</a>
+              </li>
+              <li id="whenSignedIn" class="nav-item">
+                <a class="nav-link" id="signOutBtn" href="index.html">Sign Out</a>
+              </li>
+              <li id="whenSignedIn" class="nav-item" style="position: fixed; right: 10px;">
+                <a class="nav-link" id="userBtn" href="user.html">
+                  <div id="userName"></div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-5 mx-auto text-center ">
+                <h1>Friends</h1>
+
+
+            </div>
+            <div class="col-2">
+                <span style="font-size:30px;cursor:pointer" class="btn mx-auto" onclick="openNav()">☰ </span>
+
+            </div>
+            <div class="col-5 mx-auto text-center">
+                <h1>People</h1>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul hidden="true" id="navForOptionsInFindPeople" class="list-group">
+                    <li class="list-group-item  mt-2"><a class="nav-link btn" id="showPendingRequest"
+                            href="#showPendingRequest">Requests</a></li>
+                    <li class="list-group-item  my-2"><a class="nav-link btn" id="showYourFriends"
+                            href="#displayAreaForYourFriends">Your Friends</a></li>
+                    <li class="list-group-item mb-2"><a class="nav-link btn" id="showAllProfilesNav"
+                            href="#allProfiles">Suggestions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row ">
+            <!-- <div class="col-md-2 border m-auto ">
+                <h4>Friends</h4>
+                <span style="font-size:30px;cursor:pointer" class="btn mx-auto" onclick="openNav()">☰ </span>
+                <ul hidden="true" id="navForOptionsInFindPeople" class="list-group">
+                    <li class="list-group-item  mt-2"><a class="nav-link btn" href="#user1">Requests</a></li>
+                    <li class="list-group-item  my-2"><a class="nav-link btn" id="showYourFriends" href="#allProfiles">Your Friends</a></li>
+                    <li class="list-group-item mb-2"><a class="nav-link btn" id="showAllProfilesNav" href="#allProfiles">Suggestions</a></li>
+                 </ul>
+                 
+            </div> -->
+
+            <!-- <div class="col-md-6 offset-3"></div> -->
+            <div class="mx-auto">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 offset-3 text-center">
+                            <h5>Here you can find new People </h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="allProfiles" class="container"></div>
+            <div id="displayAreaForYourFriends" class="container"></div>
+            <div id="displayPendingRequestsForFriendship" class="container"></div>
+            <!-- Test -->
+            
+            <div  class="load-more">
+                <button hidden="true" id="load-more-button">Load More</button>
+              </div>
+
+
+
+        </div>
+        <div class="row" hidden="true" id="peginatorForAllProfiles">
+
+                <!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav> -->
+
+        </div>
+    </div>
+
+    <!-- My Modal for showing contant of Profile in Detail -->
+
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="profileOfUserInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="modalDetailed">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="findpeople.js" defer></script>
+    <script src="home.js" defer></script>
+</body>
+
+</html>

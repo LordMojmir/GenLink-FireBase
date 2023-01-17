@@ -1,0 +1,15 @@
+#load-more-button {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+}
+
+.button-container button{
+        float: right;
+    }
+    @media (max-width: 300px) {
+        .button-container button{
+            display: none;
+        }
+    }
+    

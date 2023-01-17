@@ -1,0 +1,75 @@
+body {
+    position: relative;
+  }
+  ul.nav-pills {
+    top: 20px;
+    position: fixed;
+  }
+  div.col-sm-9 div {
+    height: 250px;
+    font-size: 28px;
+  }
+  #section1 {color: #fff; background-color: #1E88E5;}
+  #section2 {color: #fff; background-color: #673ab7;}
+  #section3 {color: #fff; background-color: #ff9800;}
+  #section41 {color: #fff; background-color: #00bcd4;}
+  #section42 {color: #fff; background-color: #009688;}
+  
+  @media screen and (max-width: 810px) {
+    #section1, #section2, #section3, #section41, #section42  {
+      margin-left: 150px;
+    }
+  }
+
+  .button{
+    position: relative;
+    display: block;
+    background-color: black;
+    border-radius: 1em;
+    width: 100%;
+    color: white;
+    padding: 0.75em 0.375em;
+    cursor:pointer;
+    user-select:none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+  }
+  
+  .button:hover {
+    transition-duration: 0.1s;
+    background-color: #3A3A3A;
+  }
+  
+  .button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 1em;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px #28a745 ;
+  }
+  
+  .button:active:after {
+    box-shadow: 0 0 0 0 #152238;
+    position: absolute;
+    border-radius: 1em;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .button:active {
+    top: 1px;
+  }
+  
+  /* ---------- Looking nice on CodePen ---------- */
+  @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');

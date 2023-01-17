@@ -1,0 +1,33 @@
+.row-button {
+  display: flex;
+  align-items: center;
+}
+#searchForNewFriends {
+  background: #004AAD;
+  border-radius: 2rem;
+  border-color: #00C2CB;
+  font-size: 20px;
+  padding: 10px 20px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.genPart{
+  color: #004AAD;
+}
+
+.contant-title{
+  font-size: 2.5rem;
+}
+
+.contant-text{
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .showMore .showLess {
+    display: none;
+    
+  }
+}
