@@ -134,3 +134,8 @@ body {
     background: red;
     
 }
+
+.card {
+    margin: 0; /* remove margin */
+  }
+  

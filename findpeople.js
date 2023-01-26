@@ -289,16 +289,16 @@ function displayProfiles(doc, imgURL) {
                     <div class="row">
                       <div class="col-9">
                         <h2>${doc.data().displayName}</h2>
-                        <h5> Born:</h5>
+                        <h5> Geburtsjahr:</h5>
                         <p class="ml-5"> ${doc.data().yearOfBirth}</p>
                       </div>
                       <div class="col-3" style="position: relative">
-                        <button class="btn bg-success disabled text-white" onclick="requestFriendShip('${doc.id}')" requestFriendShip_${ doc.id}>Add</button>
+                        <button class="btn bg-success disabled text-white" onclick="requestFriendShip('${doc.id}')" requestFriendShip_${ doc.id}>Hinzufügen</button>
                         <button type="button" class="btn bg-dark disabled text-white " data-bs-toggle="modal" data-bs-target="#profileOfUserInfo" onclick="displayProfilesDetailed('${doc.id}', '${imgURL}')" id="showMoreAboutPerson-${doc.id}">Info</button>
                       </div>
                     </div>
                     <div class="row">
-                      <h5>Interest:</h5>
+                      <h5>Interessen:</h5>
                       <p class="ml-5">${doc.data().interests}</p>
                     </div>
                   </div>
@@ -332,14 +332,14 @@ function displayProfilesOfFriends(doc, imgURL) {
                                         <div class="col-4 ">
                                             <Button class="btn bg-danger text-white m-3 mx-2" onclick="removeFriend('${
                                               doc.id
-                                            }')">Remove</Button> 
+                                            }')">Entfernen</Button> 
                                             <button type="button" class="btn bg-dark text-white m-3 mx-2"
                                                 onclick="chatWithPerson('${
                                                   doc.id
                                                 }', '${imgURL}')"
                                                 id="chatWithPerson-${
                                                   doc.id
-                                                }">Chat</button>
+                                                }">Unterhaltung</button>
                                         </div>
                                     </div>
                                 </div>
@@ -413,14 +413,14 @@ function displayProfilesDetailed(docID, imgURL) {
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-10">
-                                                    <h5>Born:</h5>
+                                                    <h5>Geburtsjahr:</h5>
                                                     <p class="ml-5"> ${
                                                       doc.data().yearOfBirth
                                                     }</p>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <h5>Interest:</h5>
+                                                <h5>Interessen:</h5>
                                                 <p class="ml-5">${
                                                   doc.data().interests
                                                 }</p>
@@ -428,7 +428,7 @@ function displayProfilesDetailed(docID, imgURL) {
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-sm-12">
-                                        <h5>About: </h5>
+                                        <h5>Über: </h5>
                                         <p class="ml-5">${doc.data().about}</p>
                                     </div>
                                 </div>
@@ -438,10 +438,10 @@ function displayProfilesDetailed(docID, imgURL) {
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <!--<Button class="btn bg-success text-white m-1" onclick="addFriend('${
                               doc.id
-                            }')" addFriend_${doc.id}>Add</Button> -->
+                            }')" addFriend_${doc.id}>Anfrage</Button> -->
                             <Button class="btn bg-success text-white m-1" onclick="requestFriendShip('${
                               doc.id
-                            }')" requestFriendShip_${doc.id}>Request</Button>
+                            }')" requestFriendShip_${doc.id}>Anfrage</Button>
                         </div>
                       </div>
                       </div>    

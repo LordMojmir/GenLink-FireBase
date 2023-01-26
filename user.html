@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GenLink</title>
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+
   <!-- Link to the Firebase JavaScript SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -61,16 +63,16 @@
           <a class="nav-link active" href="home.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="findpeople.html">Find People</a>
+          <a class="nav-link" href="findpeople.html">Suchen</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="chat.html">Chat</a>
+          <a class="nav-link" href="chat.html">Unterhaltungen</a>
         </li>
         <li class="nav-item" id="whenSignedOut">
-          <a class="nav-link" id="signInBtn" href="index.html">Login</a>
+          <a class="nav-link" id="signInBtn" href="index.html">Anmelden</a>
         </li>
         <li id="whenSignedIn" class="nav-item">
-          <a class="nav-link" id="signOutBtn" href="index.html">Sign Out</a>
+          <a class="nav-link" id="signOutBtn" href="index.html">Abmelden</a>
         </li>
         <li id="whenSignedIn" class="nav-item" style="position: fixed; right: 10px;">
           <a class="nav-link" id="userBtn" href="user.html">
@@ -91,27 +93,27 @@
       <div class="container-sm">
         <div class="row">
           <div class="col-8">
-            <h1 class="  card-title ml-2">My Profile</h1>
+            <h1 class="  card-title ml-2">Mein Profile</h1>
           </div>
           <div class="col-2 mx-auto"><button class="my-2 btn bg-dark btn-primary" type="button" data-bs-toggle="modal"
-              data-bs-target="#changeProfileModel" id="editButtonForAboutAndIntrest">Edit</button></div>
+              data-bs-target="#changeProfileModel" id="editButtonForAboutAndIntrest">Bearbeiten</button></div>
           
         </div>
       </div>
       <div class="row">
         <div class="col-lg-2">
-          <h5 class="ml-2">Profile Picture:</h5>
+          <h5 class="ml-2">Mein Bild:</h5>
           <div id="profilePic" class="m-3"></div>
 
         </div>
         <div class="col-lg-4">
           <h5 class="ml-2">Name:</h5>
           <div id="profileName"></div>
-          <h5 class="ml-2">Born:</h5>
+          <h5 class="ml-2">Geburtsjahr:</h5>
           <div id="profileAge"></div>
         </div>
         <div class="col-lg-5">
-          <h5 class="ml-2">About:</h5>
+          <h5 class="ml-2">Über mich:</h5>
           <div class="ml-2" id="profileAbout"></div>
         </div>
       </div>
@@ -121,7 +123,7 @@
           <div id="profileMail"></div>
         </div>
         <div class="col-lg-6">
-          <h5 class="ml-2">Interest</h5>
+          <h5 class="ml-2">Interessen:</h5>
           <div id="profileInterest"></div>
         </div>
 
@@ -134,7 +136,7 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">New Interest</h4>
+          <h4 class="modal-title">Neue Interessen</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <!-- Modal body -->
@@ -163,7 +165,7 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Change Profile</h4>
+          <h4 class="modal-title">Profile Aktualisieren</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
 
@@ -174,21 +176,21 @@
 
           </div>
           <div class="form-group">
-            <input type="text" class="form-control mb-2" id="newDisplayName" placeholder="Change Username" />
+            <input type="text" class="form-control mb-2" id="newDisplayName" placeholder="Benutzername" />
           </div>
           <div class="form-group">
             <input type="file" id="upload-ProfileIMG-button" accept="image/*">
           </div>
           <div class="form-group">
-            <label for="comment">About you:</label>
+            <label for="comment">Über mich:</label>
             <div id="oldAboutArea"> </div>
 
           </div>
           <div class="form-group">
           </div>
           <div class="container">
-            <h2>Your Interests</h2>
-            <p>Chech everything that suits you personality</p>
+            <h2>Meine Interessen</h2>
+            <p>Markiere alles was zu dir passt</p>
 
             <div class="containerForIntrests" id="containerForIntrests">
 
@@ -198,13 +200,13 @@
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <input type="text" class="form-control" id="customInterest" placeholder="Custom Interest" />
+                <input type="text" class="form-control" id="customInterest" placeholder="Besondere Interessen" />
               </div>
             </div>
           </div>
         </div>
 
-        <label for="birthday">Birthday</label>
+        <label for="birthday">Geburtsjahr</label>
         <div class="form-row my-2">
           <div class="col-4 offset-4">
             <select class="form-control" id="year">
@@ -333,8 +335,8 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" id="saveChangesInProfile">Save</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Schließen</button>
+          <button type="button" class="btn btn-success" id="saveChangesInProfile">Speichern</button>
 
         </div>
 

@@ -14,6 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" />
     <link rel="stylesheet" href="findpeople.css">
+    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -56,16 +57,16 @@
                 <a class="nav-link active" href="home.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="findpeople.html">Find People</a>
+                <a class="nav-link" href="findpeople.html">Suchen</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="chat.html">Chat</a>
               </li>
               <li class="nav-item" id="whenSignedOut">
-                <a class="nav-link" id="signInBtn" href="index.html">Login</a>
+                <a class="nav-link" id="signInBtn" href="index.html">Anmeldung</a>
               </li>
               <li id="whenSignedIn" class="nav-item">
-                <a class="nav-link" id="signOutBtn" href="index.html">Sign Out</a>
+                <a class="nav-link" id="signOutBtn" href="index.html">Abmelden</a>
               </li>
               <li id="whenSignedIn" class="nav-item" style="position: fixed; right: 10px;">
                 <a class="nav-link" id="userBtn" href="user.html">
@@ -79,7 +80,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5 mx-auto text-center ">
-                <h1>Friends</h1>
+                <h1>Suchen</h1>
 
 
             </div>
@@ -88,7 +89,7 @@
 
             </div>
             <div class="col-5 mx-auto text-center">
-                <h1>People</h1>
+                <h1>Leuten</h1>
             </div>
 
         </div>
@@ -96,11 +97,11 @@
             <div class="col-md-12">
                 <ul hidden="true" id="navForOptionsInFindPeople" class="list-group">
                     <li class="list-group-item  mt-2"><a class="nav-link btn" id="showPendingRequest"
-                            href="#showPendingRequest">Requests</a></li>
+                            href="#showPendingRequest">Kontakt Anfrage</a></li>
                     <li class="list-group-item  my-2"><a class="nav-link btn" id="showYourFriends"
-                            href="#displayAreaForYourFriends">Your Friends</a></li>
+                            href="#displayAreaForYourFriends">Deine Kontakte</a></li>
                     <li class="list-group-item mb-2"><a class="nav-link btn" id="showAllProfilesNav"
-                            href="#allProfiles">Suggestions</a></li>
+                            href="#allProfiles">Neue Kontakte Finden</a></li>
                 </ul>
             </div>
         </div>
@@ -121,7 +122,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-6 offset-3 text-center">
-                            <h5>Here you can find new People </h5>
+                            <h5>Hier kannst du neue Kontakte finden </h5>
                         </div>
                     </div>
 
@@ -133,7 +134,7 @@
             <!-- Test -->
             
             <div  class="load-more">
-                <button hidden="true" id="load-more-button">Load More</button>
+                <button hidden="true" id="load-more-button">Mehr laden</button>
               </div>
 
 

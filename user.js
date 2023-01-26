@@ -92,7 +92,7 @@ function createCheckboxes(options) {
   options.forEach((option, index) => {
     const col = document.createElement("div");
     col.classList.add("col-4");
-
+    
     const div = document.createElement("div");
     div.classList.add("checkbox");
 
@@ -120,17 +120,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const options = [
     "Sport",
-    "History",
-    "Firefighting",
-    "Reading",
-    "Learning",
-    "Baking",
+    "Geschichte",
+    "Feuerwehr",
+    "Lesen",
+    "Lernen",
+    "Wissenschft",
+    "Backen",
     "IT",
-    "Chilling",
-    "Music",
-    "Gardening",
-    "Animals",
-    "Healthy Lifestyle",
+    "Entspannen",
+    "Musik",
+    "Garten",
+    "Tiere",
+    "Gesundheit",
+    "Umwelt",
+    "Politik"
   ];
   createCheckboxes(options);
 });

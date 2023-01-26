@@ -177,7 +177,7 @@ auth.onAuthStateChanged((user) => {
     whenSignedOut.hidden = true;
     setTimeout(() => {
       window.location.assign("home.html");
-    }, 60000);
+    }, 3000);
     // Simulate a mouse click:
     // userDetails.innerHTML = `<h3>Hello ${
     //   user.displayName ?? user.email
